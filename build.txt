@@ -1,0 +1,26 @@
+// mac
+cd /Users/digitalimperiumindonesia/SERVER/PIKIRAN-RAKYAT/newsroom-mobile/
+ionic cordova build android  --release
+ionic cordova build android --minifycss --optimizejs --minifyjs --release --prod
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore /Users/digitalimperiumindonesia/SERVER/PIKIRAN-RAKYAT/newsroom-mobile/build/app/outputs/flutter-apk/app-release.apk alias_name
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore /Users/digitalimperiumindonesia/SERVER/PIKIRAN-RAKYAT/newsroom-mobile/build/app/outputs/bundle/release/app-release.aab alias_name
+
+cd /Users/digitalimperiumindonesia/Library/Android/sdk/build-tools/30.0.2/
+./zipalign -v 4 /Users/digitalimperiumindonesia/SERVER/PIKIRAN-RAKYAT/newsroom-mobile/build/app/outputs/flutter-apk/app-release.apk PR-News-Room-1.220902.apk
+./zipalign -v 4 /Users/digitalimperiumindonesia/SERVER/PIKIRAN-RAKYAT/newsroom-mobile/build/app/outputs/bundle/release/app-release.aab PR-News-Room-1.220902.aab
+.\bundletool-all-1.8.2.jar build-apks --bundle=PR-News-Room-1.220902.aab --output=PR-News-Room-1.220902.zip --mode=universal
+
+// win
+cd D:\WORK\PIKIRAN-RAKYAT\newsroom-mobile
+flutter clean && flutter build apk --release
+flutter clean && flutter build appbundle --release
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore D:\WORK\PIKIRAN-RAKYAT\newsroom-mobile\build\app\outputs\flutter-apk\app-release.apk alias_name
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore D:\WORK\PIKIRAN-RAKYAT\newsroom-mobile\build\app\outputs\bundle\release\app-release.aab alias_name
+
+cd D:\SERVER\AndroidSDK\build-tools\31.0.0
+./zipalign.exe -v 4 D:\WORK\PIKIRAN-RAKYAT\newsroom-mobile\build\app\outputs\flutter-apk\app-release.apk PR-News-Room-1.220902.apk
+./zipalign.exe -v 4 D:\WORK\PIKIRAN-RAKYAT\newsroom-mobile\build\app\outputs\bundle\release\app-release.aab PR-News-Room-1.220902.aab
+java -jar "./bundletool-all-1.8.2.jar" build-apks --bundle=PR-News-Room-1.220902.aab --output=PR-News-Room-1.220902.apks --mode=universal
+ren PR-News-Room-1.220902.apks PR-News-Room-1.220902.zip
+
+ 
