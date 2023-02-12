@@ -29,7 +29,4 @@ android {
     }
 }
 
-# tambahan baru gelar
-
-# cobapush ferdi
-# cobaferdi
+ 
